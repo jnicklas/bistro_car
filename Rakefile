@@ -2,7 +2,8 @@ require 'rubygems'
 gem 'hoe', '>= 2.1.0'
 require 'hoe'
 require 'fileutils'
-require './lib/bistro_car'
+$:.unshift(File.expand_path('./lib', File.dirname(__FILE__)))
+require 'bistro_car'
 
 Hoe.plugin :newgem
 

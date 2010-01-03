@@ -5,6 +5,8 @@ Rakefile
 app/controllers/bistro_car/bundle_controller.rb
 config/routes.rb
 lib/bistro_car.rb
+lib/bistro_car/bundle.rb
+lib/bistro_car/helpers.rb
 script/console
 script/destroy
 script/generate
