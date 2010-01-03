@@ -12,5 +12,6 @@ Hoe.spec 'bistro_car' do
   self.post_install_message = 'PostInstall.txt' # TODO remove if post-install message not required
   self.rubyforge_name       = self.name # TODO this is default value
   self.extra_deps         = [['coffee-script','>= 0.1.6']]
+  self.extra_deps         = [['jsmin','>= 1.0.1']]
   self.version = BistroCar::VERSION
 end

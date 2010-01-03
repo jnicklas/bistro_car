@@ -42,6 +42,14 @@ Now you can require both bundles like this:
 
     <%= coffee_script_bundle :admin %>
 
+== Minification:
+
+You can make BistroCar minify your JavaScript bundles using JSMin by setting:
+
+    BistroCar.minify = true
+
+This is done automatically for the production environment.
+
 == License:
 
 (The MIT License)

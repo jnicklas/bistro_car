@@ -15,10 +15,14 @@ module BistroCar
     end
     
     def to_javascript
-      file_paths.map { |path| CoffeeScript.compile(File.read(path)) }.join
+      minify(file_paths.map { |path| CoffeeScript.compile(File.read(path)) }.join)
     end
 
   private
+  
+    def minify(javascript)
+      if BistroCar.minify then JSMin.minify(javascript) else javascript end
+    end
   
     def javascript_url
       "/javascripts/bundle/#{name}.js"
