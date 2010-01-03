@@ -50,6 +50,15 @@ You can make BistroCar minify your JavaScript bundles using JSMin by setting:
 
 This is done automatically for the production environment.
 
+== Inline CoffeeScript
+
+You can also render CoffeeScript inline from within your erb templates like this:
+
+    <% coffee_script do %>
+      x: x => x * 2
+      y: y => y + 2
+    <% end %>
+
 == License:
 
 (The MIT License)
