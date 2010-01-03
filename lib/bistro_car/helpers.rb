@@ -2,7 +2,7 @@ module BistroCar
   module Helpers
     def coffee_script_bundle(*bundles)
       options = bundles.extract_options!
-      options[:mode] ||= :bundled
+      options[:mode] ||= BistroCar.mode
       [:default, *bundles].map { |name| Bundle.new(name).render(options[:mode]) }.join
     end
     
