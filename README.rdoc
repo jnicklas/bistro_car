@@ -1,32 +1,52 @@
-= bistro_car
+= BistroCar
 
-* http://github.com/#{github_username}/#{project_name}
+* http://github.com/jnicklas/bistro_car
 
-== DESCRIPTION:
+== Description:
 
-FIX (describe your package)
+BistroCar serves up {CoffeeScript}[http://jashkenas.github.com/coffee-script/]
+from within your Rails application.
 
-== FEATURES/PROBLEMS:
+== Install:
 
-* FIX (list of features or problems)
+Add it as a gem dependency to you Rails application:
 
-== SYNOPSIS:
+    config.gem "bistro_car"
 
-  FIX (code sample of usage)
+== Usage:
 
-== REQUIREMENTS:
+Add your CoffeeScript files to <tt>app/scripts</tt>. Then in your layout or wherever else suits you, add:
 
-* FIX (list of requirements)
+    <%= coffee_script_bundle %>
 
-== INSTALL:
+This will insert automatically link to your JavaScriptified CoffeeScript files. You might find it useful, for debugging purposes, to render your CoffeeScript inline, instead of linking to external scripts, you can do that with:
 
-* FIX (sudo gem install, anything else)
+    <%= coffee_script_bundle :mode => :inline %>
 
-== LICENSE:
+You can set this for the entire application:
+
+    BistroCar.mode = :inline
+
+== Secondary bundles:
+
+You're encouraged to create only a single bundle, but sometimes you might find it useful/necessary to create multiple bundles for different parts of your application. In that case you can create a directory structure like this:
+
+    + app
+      + scripts
+        + admin
+          - admin.coffee
+          - other_admin.coffee
+        - application.coffee
+
+Now you can require both bundles like this:
+
+    <%= coffee_script_bundle :admin %>
+
+== License:
 
 (The MIT License)
 
-Copyright (c) 2010 FIXME full name
+Copyright (c) 2010 Jonas Nicklas
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
