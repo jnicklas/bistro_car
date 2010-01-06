@@ -4,7 +4,7 @@ require 'bistro_car/bundle'
 require 'bistro_car/helpers'
 
 module BistroCar
-  VERSION = "0.1"
+  VERSION = "0.1.1"
   
   class << self
     attr_accessor :mode, :minify
