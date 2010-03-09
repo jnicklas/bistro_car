@@ -1,4 +1,3 @@
-require 'coffee-script'
 require 'jsmin'
 require 'bistro_car/bundle'
 require 'bistro_car/helpers'
