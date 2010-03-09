@@ -3,20 +3,18 @@ module BistroCar
     def coffee_script_bundle(*bundles)
       options = bundles.extract_options!
       options[:mode] ||= BistroCar.mode
-      [:default, *bundles].map { |name| Bundle.new(name).render(options[:mode]) }.join
+      [:default, *bundles].map { |name| Bundle.new(self, name).render(options[:mode]) }.join.try(:html_safe)
     end
     
     def coffee_script(&block)
       input = realign_indentation(capture(&block))
       output = CoffeeScript.compile(input)
       
-      concat <<-HTML
-        <script type="text/javascript" charset="utf-8">
+      content_tag(:script, <<-JAVASCRIPT, :type => 'text/javascript', :charset => 'utf-8')
         //<![CDATA[
           #{output}
         //]]>
-        </script>
-      HTML
+      JAVASCRIPT
     end
 
   private

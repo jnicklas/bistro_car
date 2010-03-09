@@ -1,8 +1,9 @@
 module BistroCar
   class Bundle
-    attr_reader :name
+    attr_reader :name, :view
     
-    def initialize(name)
+    def initialize(view, name)
+      @view = view
       @name = name.to_sym
     end
     
@@ -29,17 +30,15 @@ module BistroCar
     end
     
     def render_bundled
-      %(<script src="#{javascript_url}" type="text/javascript" charset="utf-8"></script>)
+      view.content_tag(:script, '', :src => javascript_url, :type => 'text/javascript', :charset => 'utf-8')
     end
 
     def render_inline
-      <<-HTML
-        <script type="text/javascript" charset="utf-8">
+      view.content_tag(:script, <<-JAVASCRIPT, :type => 'text/javascript', :charset => 'utf-8')
         //<![CDATA[
           #{to_javascript}
         //]]>
-        </script>
-      HTML
+      JAVASCRIPT
     end
 
     def path
