@@ -8,7 +8,7 @@ module BistroCar
     
     def coffee_script(&block)
       input = realign_indentation(capture(&block))
-      output = CoffeeScript.compile(input)
+      output = BistroCar.compile(input)
       
       content_tag(:script, <<-JAVASCRIPT, :type => 'text/javascript', :charset => 'utf-8')
         //<![CDATA[

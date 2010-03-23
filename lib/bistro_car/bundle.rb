@@ -16,15 +16,11 @@ module BistroCar
     end
     
     def to_javascript
-      minify(file_paths.map { |path| compile(path) }.join)
+      minify(file_paths.map { |path| BistroCar.compile(File.read(path)) }.join)
     end
 
   private
 
-    def compile(path)
-      %x(coffee -p #{path})
-    end
-  
     def minify(javascript)
       if BistroCar.minify then JSMin.minify(javascript) else javascript end
     end
