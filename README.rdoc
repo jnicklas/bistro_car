@@ -9,6 +9,9 @@ from within your Rails application.
 
 == Install:
 
+You'll need to install {node.js}[http://nodejs.org/#download] and
+{CoffeeScript}[http://jashkenas.github.com/coffee-script/#installation].
+
 Add it as a gem dependency to you Rails application:
 
     config.gem "bistro_car"
