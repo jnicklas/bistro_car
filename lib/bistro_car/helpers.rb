@@ -5,10 +5,12 @@ module BistroCar
       options = bundles.extract_options!
       options[:mode] ||= BistroCar.mode
 
-      [:default, *bundles].map do |name|
+      bundles = [:default, *bundles].map do |name|
         bundle = Bundle.new(name)
         render_cs_bundle(bundle, options[:mode])
-      end.join.try(:html_safe)
+      end.join
+      bundles = bundles.html_safe if bundles.respond_to?(:html_safe)
+      bundles
     end
     
     def coffee_script(&block)
