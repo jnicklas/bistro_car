@@ -10,7 +10,7 @@ module BistroCar
       input = realign_indentation(capture(&block))
       output = BistroCar.compile(input)
       
-      content_tag(:script, <<-JAVASCRIPT, :type => 'text/javascript', :charset => 'utf-8')
+      concat content_tag(:script, <<-JAVASCRIPT, :type => 'text/javascript', :charset => 'utf-8')
         //<![CDATA[
           #{output}
         //]]>
