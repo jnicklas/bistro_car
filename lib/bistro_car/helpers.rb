@@ -34,7 +34,7 @@ module BistroCar
     end
 
     def render_cs_bundle_inline(bundle)
-      content_tag(:script, <<-JAVASCRIPT, :type => 'text/javascript', :charset => 'utf-8')
+      content_tag(:script, <<-JAVASCRIPT.html_safe, :type => 'text/javascript', :charset => 'utf-8')
         //<![CDATA[
           #{bundle.to_javascript}
         //]]>
