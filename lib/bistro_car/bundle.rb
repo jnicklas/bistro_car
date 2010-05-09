@@ -11,7 +11,7 @@ module BistroCar
     end
     
     def to_javascript
-      minify(file_paths.map { |path| BistroCar.compile(File.read(path)) }.join)
+      minify(file_paths.map { |path| BistroCar.compile(File.read(path.to_s)) }.join)
     end
 
     def javascript_url
