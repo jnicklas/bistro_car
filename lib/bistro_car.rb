@@ -4,7 +4,7 @@ require 'bistro_car/bundle'
 require 'bistro_car/helpers'
 
 module BistroCar
-  VERSION = "0.2.0"
+  VERSION = "0.2.1"
 
   if defined?(Rails::Engine)
     class Engine < Rails::Engine
