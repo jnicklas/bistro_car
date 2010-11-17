@@ -12,11 +12,11 @@ module BistroCar
       bundles = bundles.html_safe if bundles.respond_to?(:html_safe)
       bundles
     end
-    
+
     def coffee_script(&block)
       output = BistroCar.compile(capture(&block))
-      
-      concat content_tag(:script, <<-JAVASCRIPT, :type => 'text/javascript', :charset => 'utf-8')
+
+      content_tag(:script, <<-JAVASCRIPT, :type => 'text/javascript', :charset => 'utf-8')
         //<![CDATA[
           #{output}
         //]]>
