@@ -17,7 +17,14 @@ module BistroCar
       file = Tempfile.new('script.coffee')
       file.write(source)
       file.close
-      %x(coffee -p #{file.path})
+
+      output = %x(coffee -p #{file.path} 2>&1)
+      if $? == 0
+        output
+      else
+        clean_output = output.gsub(/[\\"]/){|m| "\\#{m}" }.gsub(/\n/){|m| '\n' }
+        %Q[if (console && console.error) console.error("#{clean_output}");]
+      end
     end
   
     attr_accessor :mode, :minify
