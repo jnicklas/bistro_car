@@ -47,7 +47,7 @@ Now you can require both bundles like this:
 
 If you want to split the include position of your default and secondary bundles
 across the page (e.g. load default.js on top and candy.js at the bottom), pass in a
-`:default => false` to avoid a reinclude of default.js
+<tt>:default => false</tt> to avoid a reinclude of default.js
 
     <head>
       <%= coffee_script_bundle %>
