@@ -4,8 +4,10 @@ module BistroCar
     def coffee_script_bundle(*bundles)
       options = bundles.extract_options!
       options[:mode] ||= BistroCar.mode
-
-      bundles = [:default, *bundles].map do |name|
+      options[:default] = true unless options.has_key? :default
+      
+      bundles.unshift :default if options[:default]
+      bundles.map! do |name|
         bundle = Bundle.new(name)
         render_cs_bundle(bundle, options[:mode])
       end.join
