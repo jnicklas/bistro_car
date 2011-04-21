@@ -15,14 +15,18 @@ module BistroCar
       bundles
     end
     
-    def coffee_script(&block)
+    def coffee_script(options = { :wrap => true }, &block)
       output = BistroCar.compile(capture(&block))
       
-      concat content_tag(:script, <<-JAVASCRIPT, :type => 'text/javascript', :charset => 'utf-8')
-        //<![CDATA[
-          #{output}
-        //]]>
-      JAVASCRIPT
+      if options[:wrap]
+        concat content_tag(:script, <<-JAVASCRIPT, :type => 'text/javascript', :charset => 'utf-8')
+          //<![CDATA[
+            #{output}
+          //]]>
+        JAVASCRIPT
+      else
+        concat output
+      end
     end
 
   private
