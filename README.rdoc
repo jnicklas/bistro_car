@@ -53,6 +53,14 @@ You can make BistroCar minify your JavaScript bundles using JSMin by setting:
 
 This is done automatically for the production environment.
 
+== Overriding the path to coffee
+
+You can override the path that BistroCar uses to search for the coffee executable:
+
+    BistroCar.path = "/usr/local/share/npm/bin"
+
+Defaults to nil, which uses the first executable found int he user's search path.
+
 == Inline CoffeeScript
 
 You can also render CoffeeScript inline from within your erb templates like this:

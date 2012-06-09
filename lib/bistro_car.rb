@@ -11,18 +11,23 @@ module BistroCar
       engine_name :bistro_car
     end
   end
-  
+
   class << self
     def compile(source)
       file = Tempfile.new('script.coffee')
       file.write(source)
       file.close
-      %x(coffee -p #{file.path})
+      %x(#{full_coffee_path} -p #{file.path})
     end
-  
-    attr_accessor :mode, :minify
+
+    def full_coffee_path
+      @full_coffee_path ||= File.join(*[BistroCar.path, 'coffee'].compact)
+    end
+
+    attr_accessor :mode, :minify, :path
   end
 end
 
 BistroCar.mode = :bundled
 BistroCar.minify = true if defined?(Rails) and Rails.env.production?
+BistroCar.path = nil
