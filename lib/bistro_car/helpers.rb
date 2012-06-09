@@ -4,8 +4,10 @@ module BistroCar
     def coffee_script_bundle(*bundles)
       options = bundles.extract_options!
       options[:mode] ||= BistroCar.mode
-
-      bundles = [:default, *bundles].map do |name|
+      options[:default] = true unless options.has_key? :default
+      
+      bundles.unshift :default if options[:default]
+      bundles.map! do |name|
         bundle = Bundle.new(name)
         render_cs_bundle(bundle, options[:mode])
       end.join
@@ -13,14 +15,18 @@ module BistroCar
       bundles
     end
     
-    def coffee_script(&block)
+    def coffee_script(options = { :wrap => true }, &block)
       output = BistroCar.compile(capture(&block))
       
-      concat content_tag(:script, <<-JAVASCRIPT, :type => 'text/javascript', :charset => 'utf-8')
-        //<![CDATA[
-          #{output}
-        //]]>
-      JAVASCRIPT
+      if options[:wrap]
+        concat content_tag(:script, <<-JAVASCRIPT, :type => 'text/javascript', :charset => 'utf-8')
+          //<![CDATA[
+            #{output}
+          //]]>
+        JAVASCRIPT
+      else
+        concat output
+      end
     end
 
   private

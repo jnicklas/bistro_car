@@ -45,6 +45,19 @@ Now you can require both bundles like this:
 
     <%= coffee_script_bundle :admin %>
 
+If you want to split the include position of your default and secondary bundles
+across the page (e.g. load default.js on top and candy.js at the bottom), pass in a
+<tt>:default => false</tt> to avoid a reinclude of default.js
+
+    <head>
+      <%= coffee_script_bundle %>
+    </head>
+    
+    <body>
+    …
+      <%= coffee_script_bundle :candy, :default => false %>
+    </body>
+
 == Minification:
 
 You can make BistroCar minify your JavaScript bundles using JSMin by setting:
